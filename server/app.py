@@ -15,7 +15,7 @@ class Books(Resource):
     def get(self):
         books = [BookSchema().dump(b) for b in Book.query.all()]
         page=request.args.get("page",1,type=int)
-        per_page=request.args.get("per_page",20,type=int)
+        per_page=request.args.get("per_page",5,type=int)
         pagination=Book.query.paginate(page=page,per_page=per_page,error_out=False)
         return {
             "page": page,
